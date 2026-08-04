@@ -1,1 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sora:wght@100..800&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --font-body: "Inter", sans-serif;
+  --font-display: "Sora", sans-serif;
+  --color-background: #090d18;
+  --color-navbar: #0d1322;
+
+  --color-surface: #141c2f;
+  --color-border: #1e293b;
+
+  --color-accent: #6c8cff;
+  --color-accent-hover: #89a4ff;
+
+  --color-primary-text: #f8fafc;
+  --color-secondary-text: #8A97B8;
+  --color-body-text: #B6BED0;
+  --color-muted-text: #7383a8;
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-primary-text);
+  font-family: var(--font-body);
+}
