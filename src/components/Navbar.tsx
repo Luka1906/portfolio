@@ -47,7 +47,7 @@ export default function Navbar() {
     },
   ];
   return (
-    <header className="bg-navbar px-10 py-2.5  border-b border-border ">
+    <header className="bg-navbar px-10 py-2.5  border-b border-navbar-border ">
       <nav className="flex items-center justify-between">
         <div className="flex items-center text-5xl">
           <h1 className="font-display  font-semibold tracking-[-0.04em]">LM</h1>
