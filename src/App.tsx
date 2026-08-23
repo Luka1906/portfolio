@@ -2,6 +2,7 @@ import LandingPage from "./pages/LandingPage";
 import Loader from "./components/ui/Loader";
 import { useEffect, useState } from "react";
 import AboutPage from "./pages/AboutPage";
+import ExperiencePage from "./pages/ExperiencePage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +36,7 @@ function App() {
         {isLoading && <Loader isFading={isFading} />}
       </div>
       <AboutPage/>
+      <ExperiencePage/>
     </main>
   );
 }
