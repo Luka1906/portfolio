@@ -12,6 +12,7 @@ export default function LandingPage({ isVisible }: LandingPageProps) {
     >
       <Navbar />
       <Hero />
+      
     </div>
   );
 }

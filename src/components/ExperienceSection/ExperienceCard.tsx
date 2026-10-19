@@ -1,3 +1,6 @@
+
+import Card from "../ui/Card";
+
 interface ExperienceCardProps {
   role: string;
   company: string;
@@ -12,7 +15,7 @@ export default function ExperienceCard({
   skills,
 }: ExperienceCardProps) {
   return (
-    <article className="rounded-xl border border-border bg-surface p-7">
+    <Card>
         {/* Header */}
       <div>
         <h3 className="text-xl font-semibold text-primary-text">
@@ -49,6 +52,6 @@ export default function ExperienceCard({
           </li>
         ))}
       </ul>
-    </article>
+    </Card>
   );
 }

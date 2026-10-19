@@ -1,4 +1,5 @@
 import { FaArrowRight } from "react-icons/fa6";
+import DeveloperCard from "./DeveloperCard";
 
 export default function HeroText() {
   return (
@@ -15,11 +16,12 @@ export default function HeroText() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 items-start">
-        <p className="text-[22px] text-body-text">
+      <div className="flex flex-col gap-6 items-start">
+        {/* <p className="text-[22px] text-body-text">
           I build modern, user-friendly web applications with a focus on clean
           code and great experience
-        </p>
+        </p> */}
+        <DeveloperCard/>
         <button className="flex items-center bg-accent rounded-lg px-6 py-4 gap-3.5 text-background font-semibold">
           View projects
           <FaArrowRight />

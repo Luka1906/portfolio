@@ -1,4 +1,4 @@
-import {motion} from "motion/react"
+
 
 interface LoaderProps {
     isFading: boolean
@@ -6,11 +6,11 @@ interface LoaderProps {
 function Loader({isFading}:LoaderProps) {
   return (
    <div
-      className={`
-        fixed inset-0 flex items-center justify-center bg-background
-        transition-opacity duration-400
-        ${isFading ? "opacity-0" : "opacity-100"}
-      `}
+     className={`
+  fixed inset-0 z-50 flex items-center justify-center bg-background
+  transition-opacity duration-400
+  ${isFading ? "opacity-0" : "opacity-100"}
+`}
     >
       <div className="relative flex h-56 w-56 items-center justify-center rounded-full border border-border">
 

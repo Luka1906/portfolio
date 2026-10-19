@@ -33,10 +33,10 @@ export default function AboutText() {
         <p className="">
           Eventually, I realized I wanted to do more than publish content on the
           web — I wanted to understand how it worked and build things for it.
-          Today, I focus mostly on the fron-end, while also working with APIs
+          Today, I focus mostly on the front-end, while also working with APIs
           and backend services and{" "}
           <span className="text-accent">
-            collaborating with designers and developer
+            collaborating with designers and developers
           </span>{" "}
           to turn ideas into working features.
         </p>

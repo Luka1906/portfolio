@@ -19,8 +19,8 @@ const experiences: ExperiencesData[] = [
     date: "Jun 2026 - Present",
     location: "Remote",
     description: [
-      "Building an AI-powered document-processing platform that automatically extracts data and provides a clear workflow for reviewing and validating the results.",
-      "Developing responsive, accessible interfaces and connecting them to backend APIs.",
+      "Building the frontend workflows for an AI-powered document-processing platform that turns HOA documents into structured reports, from report creation and document extraction to reviewing and validating AI-extracted data.",
+      "Developing responsive, accessible interfaces and integrating them with backend APIs using TanStack Query.",
     ],
     skills: [
       "React",
@@ -41,8 +41,19 @@ const experiences: ExperiencesData[] = [
     ],
     skills: ["Leadership", "Communication", "Problem Solving", "Operations"],
   },
-  {
+   {
     id: 3,
+    role: "Front-End Developer Intern",
+    company: "Faculty of Organizational Sciences, University of Belgrade",
+    date: "Oct 2022 - Sep 2023",
+    location: "Belgrade, Serbia",
+    description: [
+      "Worked on improvements to the eLab department website and designed the FONcast podcast website in Figma, including early development in React.",
+    ],
+    skills: ["React", "JavaScript", "Figma", "HTML/CSS"],
+  },
+  {
+    id: 4,
     role: "Web Journalist",
     company: "Tango Six Group",
     date: "Nov 2018 - Jun 2020",
@@ -54,7 +65,11 @@ const experiences: ExperiencesData[] = [
   },
 ];
 
+
+
 export default function Experience() {
+  
+
   return (
     <section id="experience" className="py-24">
       <div className="px-12.5">

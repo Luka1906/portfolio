@@ -1,8 +1,11 @@
-import LandingPage from "./pages/LandingPage";
-import Loader from "./components/ui/Loader";
+
 import { useEffect, useState } from "react";
+
+import LandingPage from "./pages/LandingPage";
 import AboutPage from "./pages/AboutPage";
 import ExperiencePage from "./pages/ExperiencePage";
+import Projects from "./components/ProjectSection/Projects";
+import Loader from "./components/ui/Loader";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,14 +32,15 @@ function App() {
     };
   }, []);
 
+
   return (
     <main className="min-h-screen">
-      <div>
-        <LandingPage isVisible={showLanding} />
-        {isLoading && <Loader isFading={isFading} />}
-      </div>
-      <AboutPage/>
-      <ExperiencePage/>
+      <LandingPage isVisible={showLanding} />
+      <AboutPage />
+      <ExperiencePage />
+      <Projects />
+
+      {isLoading && <Loader isFading={isFading} />}
     </main>
   );
 }

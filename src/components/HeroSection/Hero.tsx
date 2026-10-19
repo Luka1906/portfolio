@@ -1,3 +1,4 @@
+import { HorizontalStars } from "../ui/HorizontalStars";
 import HeroImage from "./HeroImage";
 import HeroText from "./HeroText";
 import ParticleBackground from "./ParticleBackground";
@@ -11,6 +12,7 @@ export default function Hero() {
         <HeroImage />
         <HeroText />
       </div>
+      <HorizontalStars/>
     </section>
   );
 }
