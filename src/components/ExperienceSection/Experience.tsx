@@ -1,5 +1,6 @@
 import { EdgeStars } from "../ui/EdgeStars";
 import ExperienceCard from "./ExperienceCard";
+import { motion } from "motion/react";
 
 interface ExperiencesData {
   id: number;
@@ -19,8 +20,8 @@ const experiences: ExperiencesData[] = [
     date: "Jun 2026 - Present",
     location: "Remote",
     description: [
-      "Building the frontend workflows for an AI-powered document-processing platform that turns HOA documents into structured reports, from report creation and document extraction to reviewing and validating AI-extracted data.",
-      "Developing responsive, accessible interfaces and integrating them with backend APIs using TanStack Query.",
+      "Building the frontend for an AI-powered platform that transforms HOA documents into structured reports. Developing document upload, extraction progress tracking, and verification interfaces that allow users to review and correct AI-extracted data.",
+      "Using TanStack Query to handle API requests and manage server data.",
     ],
     skills: [
       "React",
@@ -41,14 +42,14 @@ const experiences: ExperiencesData[] = [
     ],
     skills: ["Leadership", "Communication", "Problem Solving", "Operations"],
   },
-   {
+  {
     id: 3,
     role: "Front-End Developer Intern",
     company: "Faculty of Organizational Sciences, University of Belgrade",
     date: "Oct 2022 - Sep 2023",
     location: "Belgrade, Serbia",
     description: [
-      "Worked on improvements to the eLab department website and designed the FONcast podcast website in Figma, including early development in React.",
+      "Maintained and improved the eLab department website, implementing UI updates, fixing bugs, and improving consistency across pages. Designed the FONcast podcast website in Figma and contributed to its initial React development..",
     ],
     skills: ["React", "JavaScript", "Figma", "HTML/CSS"],
   },
@@ -65,34 +66,36 @@ const experiences: ExperiencesData[] = [
   },
 ];
 
-
-
 export default function Experience() {
-  
-
   return (
-    <section id="experience" className="py-24">
-      <div className="px-12.5">
-        <h2 className="font-accent text-[40px] text-primary-text">
+    <section id="experience" className=" pt-12 lg:pt-14">
+   <div className="px-5 sm:px-8 md:px-10 lg:px-12.5">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+         className="font-accent text-3xl sm:text-4xl lg:text-[40px] text-primary-text"
+        >
           Experience<span className="text-accent">.</span>
-        </h2>
+        </motion.h2>
       </div>
 
-      <div className="relative mt-12 overflow-hidden">
+      <div className="relative mt-8 lg:mt-12 ">
         <EdgeStars />
 
         {/* Centers the WHOLE timeline composition */}
-        <div className="relative z-10 mx-auto max-w-6xl px-6">
-          <div className="pl-[194px]">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 lg:px-6 ">
+          <div className="lg:pl-[194px]">
             {/* Your original timeline structure */}
             <div className="relative flex flex-col gap-6">
               {/* Continuous vertical line */}
-              <div className="absolute inset-y-0 left-0 w-px bg-border" />
+              <div className="hidden lg:block absolute inset-y-0 left-0 w-px bg-border" />
 
               {experiences.map((experience) => (
-                <div key={experience.id} className="relative pl-15.5">
-                  {/* Date + location */}
-                  <div className="absolute right-full top-7 mr-6 w-[170px] text-right text-sm">
+                <div key={experience.id} className="relative lg:pl-15.5">
+                  {/* Desktop date and location */}
+                  <div className="absolute top-7 right-full mr-6 hidden w-[170px] text-right text-sm lg:block">
                     <p className="font-semibold text-primary-text">
                       {experience.date}
                     </p>
@@ -102,17 +105,18 @@ export default function Experience() {
                     </p>
                   </div>
 
-                  {/* Dot */}
-                  <div className="absolute left-0 top-8 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border border-border bg-background">
+                  {/* Desktop timeline dot */}
+                  <div className="absolute top-8 left-0 hidden h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border border-border bg-background lg:flex">
                     <div className="h-7 w-7 rounded-full bg-accent" />
 
-                    {/* Connector */}
-                    <div className="absolute left-full top-1/2 h-px w-[45px] -translate-y-1/2 bg-border" />
+                    <div className="absolute top-1/2 left-full h-px w-[45px] -translate-y-1/2 bg-border" />
                   </div>
 
                   <ExperienceCard
                     role={experience.role}
                     company={experience.company}
+                    date={experience.date}
+                    location={experience.location}
                     description={experience.description}
                     skills={experience.skills}
                   />

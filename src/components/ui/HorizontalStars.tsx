@@ -34,7 +34,7 @@ export function HorizontalStars() {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-0"
     >
-      <div className="absolute inset-x-0 -bottom-32 h-20">
+      <div className="absolute inset-x-0 -bottom-16 lg:-bottom-32 h-20">
         {createStars()}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine, ISourceOptions } from "@tsparticles/engine";
@@ -14,7 +14,7 @@ export default function ParticleBackground() {
 
       fullScreen: {
         enable: false,
-        zIndex: -1
+        zIndex: -1,
       },
 
       background: {
@@ -78,24 +78,40 @@ export default function ParticleBackground() {
           },
         },
       },
-interactivity: {
-  events: {
-    onHover: {
-      enable: true,
-      mode: "repulse",
-    },
-  },
+      interactivity: {
+        events: {
+          onHover: {
+            enable: true,
+            mode: "repulse",
+          },
+        },
 
-  modes: {
-    repulse: {
-      distance: 70,
-      duration: 0.4,
-    },
-  },
-},
+        modes: {
+          repulse: {
+            distance: 70,
+            duration: 0.4,
+          },
+        },
+      },
     }),
     [],
   );
+
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    const updateScreenSize = () => {
+      setIsDesktop(mediaQuery.matches);
+    };
+    updateScreenSize();
+
+    mediaQuery.addEventListener("change", updateScreenSize);
+    return () => mediaQuery.removeEventListener("change", updateScreenSize);
+  }, []);
+
+  if (!isDesktop) return null;
 
   return (
     <ParticlesProvider init={particlesInit}>

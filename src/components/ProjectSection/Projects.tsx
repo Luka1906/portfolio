@@ -5,6 +5,7 @@ import serbshop from "../../assets/project-images/serbshop.webp";
 import socializer from "../../assets/project-images/socializer.webp";
 import chatme from "../../assets/project-images/chatme.webp";
 import ScatteredStars from "../ui/ScatteredStars";
+import { motion } from "motion/react";
 
 export interface ProjectData {
   id: number;
@@ -79,28 +80,37 @@ export default function Projects() {
       website: "https://socializer-app.netlify.app/",
     },
   ];
-return (
-  <section id="projects" className="relative px-12.5 py-12">
-    {/* Blue glow */}
-    <div className="pointer-events-none absolute -top-64 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-blue-500/15 blur-[120px]" />
+  return (
+    <section
+      id="projects"
+      className="relative px-5  sm:px-8 md:px-10 lg:px-12.5 pt-12 lg:pt-14"
+    >
+      {/* Blue glow */}
+      <div className="pointer-events-none absolute -top-64 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-blue-500/15 blur-[120px]" />
 
-    {/* Scattered stars */}
-    <div className="pointer-events-none absolute inset-x-0 -top-12 h-[280px]">
-      <ScatteredStars />
-    </div>
-
-    {/* Projects content */}
-    <div className="relative z-10">
-      <h2 className="font-accent text-[40px] text-primary-text">
-        Projects<span className="text-accent">.</span>
-      </h2>
-
-      <div className="mt-12 grid grid-cols-2 gap-6">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+      {/* Scattered stars */}
+      <div className="pointer-events-none absolute inset-x-0 -top-12 h-[280px]">
+        <ScatteredStars />
       </div>
-    </div>
-  </section>
-);
+
+      {/* Projects content */}
+      <div className="relative z-10">
+        <motion.h2
+          initial={{ opacity: 0, }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="font-accent text-3xl sm:text-4xl lg:text-[40px] text-primary-text"
+        >
+          Projects<span className="text-accent">.</span>
+        </motion.h2>
+
+        <div className="mt-8 lg:mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

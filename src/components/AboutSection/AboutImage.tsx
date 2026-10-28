@@ -1,44 +1,70 @@
 import { MapPin } from "lucide-react";
 import { useState } from "react";
+import { motion } from "motion/react";
 
-import antarcticaImage from "../../assets/antarctica.jpeg";
-import penguinImage from "../../assets/penguin.jpeg";
+import antarcticaImage from "../../assets/antarctica.webp";
+import antarcticaMobile from "../../assets/antarctica-mobile.webp";
+import penguinImage from "../../assets/penguin.webp";
 import penguinCursor from "../../assets/linux.svg";
 
 export default function AboutImage() {
   const [showPenguin, setShowPenguin] = useState(false);
+  const [penguinLoaded, setPenguinLoaded] = useState(false);
 
-  const imageBaseClasses =
-    "absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-in-out";
+  const imageBaseClasses = "absolute inset-0 h-full w-full object-cover";
 
   return (
-    <section className="px-4">
-      <div className="flex h-[760px] w-[580px] flex-col gap-2.5 overflow-hidden rounded-xl border border-border p-4">
-        <div className="relative h-[658px] w-full overflow-hidden rounded-xl">
-          <img
+    <section className="w-full px-4 flex justify-center">
+      <div className="flex w-full max-w-[580px] flex-col gap-2.5 overflow-hidden rounded-xl border border-border p-3 sm:p-4">
+        {/* Image container */}
+        <div className="relative aspect-548/658 w-full overflow-hidden rounded-xl contrast-105 brightness-115">
+          <motion.img
             src={antarcticaImage}
+            srcSet={`${antarcticaMobile} 1200w, ${antarcticaImage} 2000w`}
+            sizes="(max-width: 640px) calc(100vw - 56px), 548px"
             alt="Luka in Antarctica"
-            className={`${imageBaseClasses} object-[35%_center] ${
-              showPenguin ? "opacity-0" : "opacity-100"
-            }`}
+            loading="lazy"
+            decoding="async"
+            className={`${imageBaseClasses} object-[35%_center]`}
+            initial={false}
+            animate={{
+              opacity: showPenguin ? 0 : 1,
+              scale: showPenguin ? 1.03 : 1,
+            }}
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+            }}
           />
 
-          <img
-            src={penguinImage}
-            alt="Penguin in Antarctica"
-            className={`${imageBaseClasses} scale-[1.18] object-[50%_47%] ${
-              showPenguin ? "opacity-100" : "opacity-0"
-            }`}
-          />
+          {penguinLoaded && (
+            <motion.img
+              src={penguinImage}
+              alt="Penguin in Antarctica"
+              decoding="async"
+              className={`${imageBaseClasses} object-[50%_47%]`}
+              initial={{ opacity: 0, scale: 1.22 }}
+              animate={{
+                opacity: showPenguin ? 1 : 0,
+                scale: showPenguin ? 1.18 : 1.22,
+              }}
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+              }}
+            />
+          )}
         </div>
 
-        <div className="flex flex-1 items-center justify-between px-1">
-          <div>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-5 w-5 text-accent" />
+        {/* Bottom information */}
+        <div className="flex min-w-0 items-center justify-between gap-3 px-1 py-2">
+          <div className="min-w-0">
+            <div className="flex items-start gap-2">
+              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
 
-              <p>
+              <p className="text-sm sm:text-base">
                 <span className="font-medium text-white">Antarctica</span>
+
                 <span className="text-secondary-text">
                   {" "}
                   · New Year's Day 2026
@@ -46,25 +72,28 @@ export default function AboutImage() {
               </p>
             </div>
 
-            <p className="ml-1.5 mt-1 text-sm italic text-secondary-text">
+            <p className="ml-1.5 mt-1 text-xs italic text-secondary-text sm:text-sm">
               {showPenguin ? "Found some locals." : "A long way from Chicago."}
             </p>
           </div>
 
+          {/* Penguin toggle */}
           <button
             type="button"
-            onClick={() => setShowPenguin((prev) => !prev)}
+            onClick={() => {
+              setPenguinLoaded(true);
+              setShowPenguin((prev) => !prev);
+            }}
             aria-label={
-              showPenguin
-                ? "Show original Antarctica photo"
-                : "Reveal surprise"
+              showPenguin ? "Show Antarctica portrait" : "Show penguin photo"
             }
+            aria-pressed={showPenguin}
             style={{
               cursor: `url("${penguinCursor}") 16 16, pointer`,
             }}
             className={`
               relative
-              flex h-10 w-10
+              flex h-10 w-10 shrink-0
               items-center justify-center
               rounded-full
               border-2
