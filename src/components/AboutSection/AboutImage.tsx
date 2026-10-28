@@ -9,7 +9,6 @@ import penguinCursor from "../../assets/linux.svg";
 
 export default function AboutImage() {
   const [showPenguin, setShowPenguin] = useState(false);
-  const [penguinLoaded, setPenguinLoaded] = useState(false);
 
   const imageBaseClasses = "absolute inset-0 h-full w-full object-cover";
 
@@ -37,23 +36,22 @@ export default function AboutImage() {
             }}
           />
 
-          {penguinLoaded && (
-            <motion.img
-              src={penguinImage}
-              alt="Penguin in Antarctica"
-              decoding="async"
-              className={`${imageBaseClasses} object-[50%_47%]`}
-              initial={{ opacity: 0, scale: 1.22 }}
-              animate={{
-                opacity: showPenguin ? 1 : 0,
-                scale: showPenguin ? 1.18 : 1.22,
-              }}
-              transition={{
-                duration: 0.5,
-                ease: "easeInOut",
-              }}
-            />
-          )}
+          <motion.img
+            src={penguinImage}
+            alt="Penguin in Antarctica"
+            decoding="async"
+            loading="lazy"
+            className={`${imageBaseClasses} object-[50%_47%]`}
+            initial={false}
+            animate={{
+              opacity: showPenguin ? 1 : 0,
+              scale: showPenguin ? 1.18 : 1.22,
+            }}
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+            }}
+          />
         </div>
 
         {/* Bottom information */}
@@ -81,7 +79,6 @@ export default function AboutImage() {
           <button
             type="button"
             onClick={() => {
-              setPenguinLoaded(true);
               setShowPenguin((prev) => !prev);
             }}
             aria-label={
