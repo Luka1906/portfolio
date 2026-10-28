@@ -117,9 +117,12 @@ export default function Navbar() {
         <nav className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center text-5xl">
-            <h1 className="font-accent font-semibold tracking-[-0.04em]">
-              LM
-            </h1>
+            <a href="/">
+              <h1 className="font-accent font-semibold tracking-[-0.04em]">
+                LM
+              </h1>
+            </a>
+
             <span className="text-accent">.</span>
           </div>
 
@@ -181,13 +184,13 @@ export default function Navbar() {
               className="flex items-center gap-3 rounded-lg border border-accent bg-navbar px-3 py-2.5 xl:px-5 xl:py-3.5 cursor-pointer "
             >
               <span className="xl:text-base text-sm">Resume</span>
-              <BsDownload className="text-accent text-lg xl:text-xl"  />
+              <BsDownload className="text-accent text-lg xl:text-xl" />
             </AnimatedLink>
           </div>
           <motion.button
             type="button"
-            whileTap={{scale:0.9}}
-            whileHover={{scale:1.05}}
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
             onClick={() => setIsMenuOpen((prev) => !prev)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
