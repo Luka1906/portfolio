@@ -36,3 +36,24 @@ body {
   color: var(--color-primary-text);
   font-family: var(--font-body);
 }
+
+@keyframes particle-twinkle {
+  0%,
+  100% {
+    opacity: var(--star-opacity);
+  }
+
+  50% {
+    opacity: calc(var(--star-opacity) * 0.4);
+  }
+}
+
+.particle-star {
+  animation: particle-twinkle 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle-star {
+    animation: none;
+  }
+}

@@ -1,125 +1,51 @@
-import { useEffect, useMemo, useState } from "react";
-import Particles, { ParticlesProvider } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
-
-const particlesInit = async (engine: Engine) => {
-  await loadSlim(engine);
+const random = (seed: number) => {
+  const value = Math.sin(seed * 127.1) * 43758.5453;
+  return value - Math.floor(value);
 };
 
+const stars = Array.from({ length: 250 }, (_, i) => {
+  const x = random(i + 1) * 100;
+  const y = random(i + 100) * 100;
+
+  return {
+    x,
+    y,
+   size: 1 + random(i + 200) * 3,
+opacity: 0.3 + random(i + 300) * 0.5,
+    duration: 4 + random(i + 400) * 5,
+    delay: random(i + 500) * -8,
+  };
+})
+  .filter(
+    ({ x, y }) =>
+      !(x > 5 && x < 40 && y > 12 && y < 85) &&
+      !(x > 50 && x < 94 && y > 12 && y < 88),
+  )
+  .slice(0, 45);
+
 export default function ParticleBackground() {
-  const options: ISourceOptions = useMemo(
-    () => ({
-      fpsLimit: 60,
-
-      fullScreen: {
-        enable: false,
-        zIndex: -1,
-      },
-
-      background: {
-        color: "transparent",
-      },
-
-      detectRetina: true,
-
-      particles: {
-        number: {
-          value: 55,
-          density: {
-            enable: true,
-          },
-        },
-
-        paint: {
-          fill: {
-            enable: true,
-            color: {
-              value: ["#6C8CFF", "#8FA7FF", "#B1BEFF"],
-            },
-          },
-        },
-
-        opacity: {
-          value: {
-            min: 0.15,
-            max: 0.8,
-          },
-          animation: {
-            enable: true,
-            speed: 0.25,
-            sync: false,
-          },
-        },
-
-        size: {
-          value: {
-            min: 0.8,
-            max: 4,
-          },
-          animation: {
-            enable: true,
-            speed: 0.5,
-            sync: false,
-          },
-        },
-
-        move: {
-          enable: true,
-          speed: {
-            min: 0.12,
-            max: 0.35,
-          },
-          direction: "none",
-          random: true,
-          straight: false,
-          outModes: {
-            default: "out",
-          },
-        },
-      },
-      interactivity: {
-        events: {
-          onHover: {
-            enable: true,
-            mode: "repulse",
-          },
-        },
-
-        modes: {
-          repulse: {
-            distance: 70,
-            duration: 0.4,
-          },
-        },
-      },
-    }),
-    [],
-  );
-
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-    const updateScreenSize = () => {
-      setIsDesktop(mediaQuery.matches);
-    };
-    updateScreenSize();
-
-    mediaQuery.addEventListener("change", updateScreenSize);
-    return () => mediaQuery.removeEventListener("change", updateScreenSize);
-  }, []);
-
-  if (!isDesktop) return null;
-
   return (
-    <ParticlesProvider init={particlesInit}>
-      <Particles
-        id="tsparticles"
-        className="absolute inset-0"
-        options={options}
-      />
-    </ParticlesProvider>
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block"
+    >
+      {stars.map((star, index) => (
+        <span
+          key={index}
+          className="particle-star absolute rounded-full bg-accent"
+          style={
+            {
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: star.size,
+              height: star.size,
+              "--star-opacity": star.opacity,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+            } as React.CSSProperties
+          }
+        />
+      ))}
+    </div>
   );
 }
