@@ -6,7 +6,7 @@ export default function About() {
     <section
       id="about"
    
-      className="flex flex-col items-center lg:items-start lg:flex-row gap-8 px-5 sm:px-8 md:px-10 lg:px-12.5 pt-12 lg:pt-14 xl:pt-30"
+      className="flex flex-col items-center lg:items-start lg:flex-row gap-8 px-5 sm:px-8 md:px-10 lg:px-12.5"
     >
       <AboutText />
       <AboutImage />

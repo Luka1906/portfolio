@@ -5,12 +5,11 @@ import ParticleBackground from "./ParticleBackground";
 
 export default function Hero() {
   return (
-    <section className="relative">
+    <section className="relative flex min-h-dvh flex-col">
       <ParticleBackground />
 
-      <div className="relative z-10 gap-10 flex-col lg:flex-row flex justify-around  px-5 lg:px-3 pt-6 lg:pt-15 items-center ">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-10 px-5 lg:flex-row lg:justify-around lg:px-3">
         <HeroImage />
-
         <HeroText />
       </div>
 
