@@ -159,8 +159,11 @@ export default function Contact() {
               {/* Social media links appear last */}
               <motion.div
                 variants={fadeIn}
-                className="flex items-center gap-2"
+                className="flex"
               >
+                <div>
+                  
+                </div>
                 <a
                   href="https://github.com/Luka1906"
                   target="_blank"

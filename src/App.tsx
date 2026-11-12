@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-10 overflow-hidden">
+      <main className="min-h-screen overflow-hidden">
         <LandingPage />
         <AboutPage />
         <ExperiencePage />
